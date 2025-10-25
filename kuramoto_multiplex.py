@@ -41,15 +41,21 @@ def build_quotient_adjacency() -> Tuple[Tuple[Tuple[float, ...], ...], Tuple[flo
     return adjacency, cluster_sizes
 
 
-def order_parameter(phases: Sequence[float], cluster_sizes: Sequence[float]) -> complex:
-    """Compute the Kuramoto order parameter for weighted clusters."""
+def cluster_order_parameters(phases: Sequence[float], cluster_sizes: Sequence[float]) -> List[float]:
+    """Return r_q as defined by ||\sum_{j\in C_q} e^{ix_j}/trace(E^q)||_2 for each cluster."""
 
-    total = sum(cluster_sizes)
-    result = 0j
+    r_values: List[float] = []
     for phase, size in zip(phases, cluster_sizes):
-        weight = size / total
-        result += weight * cmath.exp(1j * phase)
-    return result
+        if size == 0:
+            r_values.append(0.0)
+            continue
+        # In the symmetry-reduced description every node inside a cluster shares the
+        # same phase.  The sum over nodes therefore reduces to size * e^{i * phase},
+        # while trace(E^q) coincides with the cluster size.  The resulting order
+        # parameter magnitude is simply the modulus of e^{i * phase}.
+        normalized = cmath.exp(1j * phase)
+        r_values.append(abs(normalized))
+    return r_values
 
 
 def kuramoto_rhs(
@@ -65,12 +71,17 @@ def kuramoto_rhs(
     omega1 = params.natural_frequencies_layer1
     omega2 = params.natural_frequencies_layer2
 
-    r1 = abs(order_parameter(phases_layer1, params.cluster_sizes))
-    r2 = abs(order_parameter(phases_layer2, params.cluster_sizes))
-    d_1_to_2 = 1.0 + s_strength * r1
-    d_2_to_1 = 1.0 + s_strength * r2
+    r1 = cluster_order_parameters(phases_layer1, params.cluster_sizes)
+    r2 = cluster_order_parameters(phases_layer2, params.cluster_sizes)
+    d_1_to_2 = [1.0 + s_strength * value for value in r1]
+    d_2_to_1 = [1.0 + s_strength * value for value in r2]
 
-    def layer_rhs(phases: Sequence[float], omega: Sequence[float], lambda_intra: float, modulation: float) -> List[float]:
+    def layer_rhs(
+        phases: Sequence[float],
+        omega: Sequence[float],
+        lambda_intra: float,
+        modulation: Sequence[float],
+    ) -> List[float]:
         derivatives: List[float] = []
         for i, (phase_i, omega_i) in enumerate(zip(phases, omega)):
             interaction = 0.0
@@ -78,7 +89,7 @@ def kuramoto_rhs(
                 if weight == 0.0:
                     continue
                 interaction += weight * math.sin(phases[j] - phase_i)
-            derivatives.append(omega_i + lambda_intra * modulation * interaction)
+            derivatives.append(omega_i + lambda_intra * modulation[i] * interaction)
         return derivatives
 
     return (
@@ -150,8 +161,10 @@ def simulate_for_s(params: MultiplexKuramotoParams, s_strength: float) -> Tuple[
     r2_values: List[float] = []
     for _ in range(n_average_steps):
         theta1, theta2 = rk4_step(theta1, theta2, dt, params, s_strength)
-        r1_values.append(abs(order_parameter(theta1, params.cluster_sizes)))
-        r2_values.append(abs(order_parameter(theta2, params.cluster_sizes)))
+        r1_clusters = cluster_order_parameters(theta1, params.cluster_sizes)
+        r2_clusters = cluster_order_parameters(theta2, params.cluster_sizes)
+        r1_values.append(sum(r1_clusters) / len(r1_clusters))
+        r2_values.append(sum(r2_clusters) / len(r2_clusters))
 
     r1_mean = sum(r1_values) / len(r1_values)
     r2_mean = sum(r2_values) / len(r2_values)
