@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420">
+<rect x="0" y="0" width="720" height="420" fill="white"/>
+<line x1="80" y1="360" x2="700" y2="360" stroke="black" stroke-width="1.5"/>
+<line x1="80" y1="40" x2="80" y2="360" stroke="black" stroke-width="1.5"/>
+<line x1="80.00" y1="360" x2="80.00" y2="366" stroke="black" stroke-width="1"/>
+<text x="80.00" y="384" font-size="14" text-anchor="middle">0.00</text>
+<line x1="235.00" y1="360" x2="235.00" y2="366" stroke="black" stroke-width="1"/>
+<text x="235.00" y="384" font-size="14" text-anchor="middle">1.25</text>
+<line x1="390.00" y1="360" x2="390.00" y2="366" stroke="black" stroke-width="1"/>
+<text x="390.00" y="384" font-size="14" text-anchor="middle">2.50</text>
+<line x1="545.00" y1="360" x2="545.00" y2="366" stroke="black" stroke-width="1"/>
+<text x="545.00" y="384" font-size="14" text-anchor="middle">3.75</text>
+<line x1="700.00" y1="360" x2="700.00" y2="366" stroke="black" stroke-width="1"/>
+<text x="700.00" y="384" font-size="14" text-anchor="middle">5.00</text>
+<line x1="80" y1="360.00" x2="74" y2="360.00" stroke="black" stroke-width="1"/>
+<text x="70" y="364.00" font-size="14" text-anchor="end">0.00</text>
+<line x1="80" y1="280.00" x2="74" y2="280.00" stroke="black" stroke-width="1"/>
+<text x="70" y="284.00" font-size="14" text-anchor="end">0.25</text>
+<line x1="80" y1="200.00" x2="74" y2="200.00" stroke="black" stroke-width="1"/>
+<text x="70" y="204.00" font-size="14" text-anchor="end">0.50</text>
+<line x1="80" y1="120.00" x2="74" y2="120.00" stroke="black" stroke-width="1"/>
+<text x="70" y="124.00" font-size="14" text-anchor="end">0.75</text>
+<line x1="80" y1="40.00" x2="74" y2="40.00" stroke="black" stroke-width="1"/>
+<text x="70" y="44.00" font-size="14" text-anchor="end">1.00</text>
+<line x1="80.00" y1="40" x2="80.00" y2="360" stroke="#dddddd" stroke-width="1"/>
+<line x1="235.00" y1="40" x2="235.00" y2="360" stroke="#dddddd" stroke-width="1"/>
+<line x1="390.00" y1="40" x2="390.00" y2="360" stroke="#dddddd" stroke-width="1"/>
+<line x1="545.00" y1="40" x2="545.00" y2="360" stroke="#dddddd" stroke-width="1"/>
+<line x1="700.00" y1="40" x2="700.00" y2="360" stroke="#dddddd" stroke-width="1"/>
+<line x1="80" y1="360.00" x2="700" y2="360.00" stroke="#dddddd" stroke-width="1"/>
+<line x1="80" y1="280.00" x2="700" y2="280.00" stroke="#dddddd" stroke-width="1"/>
+<line x1="80" y1="200.00" x2="700" y2="200.00" stroke="#dddddd" stroke-width="1"/>
+<line x1="80" y1="120.00" x2="700" y2="120.00" stroke="#dddddd" stroke-width="1"/>
+<line x1="80" y1="40.00" x2="700" y2="40.00" stroke="#dddddd" stroke-width="1"/>
+<polyline fill="none" stroke="#1f77b4" stroke-width="2" points="80.00,40.02 104.80,40.01 129.60,40.01 154.40,40.01 179.20,40.01 204.00,40.00 228.80,40.00 253.60,40.00 278.40,40.00 303.20,40.00 328.00,40.00 352.80,40.00 377.60,40.00 402.40,40.00 427.20,40.00 452.00,40.00 476.80,40.00 501.60,40.00 526.40,40.00 551.20,40.00 576.00,40.00 600.80,40.00 625.60,40.00 650.40,40.00 675.20,40.00 700.00,40.00"/>
+<polyline fill="none" stroke="#d62728" stroke-width="2" points="80.00,40.01 104.80,40.01 129.60,40.01 154.40,40.00 179.20,40.00 204.00,40.00 228.80,40.00 253.60,40.00 278.40,40.00 303.20,40.00 328.00,40.00 352.80,40.00 377.60,40.00 402.40,40.00 427.20,40.00 452.00,40.00 476.80,40.00 501.60,40.00 526.40,40.00 551.20,40.00 576.00,40.00 600.80,40.00 625.60,40.00 650.40,40.00 675.20,40.00 700.00,40.00"/>
+<rect x="90" y="50" width="220" height="60" fill="white" stroke="black" stroke-width="1"/>
+<line x1="105" y1="70" x2="145" y2="70" stroke="#1f77b4" stroke-width="2"/>
+<text x="155" y="75" font-size="14">Layer 1 |z|</text>
+<line x1="105" y1="90" x2="145" y2="90" stroke="#d62728" stroke-width="2"/>
+<text x="155" y="95" font-size="14">Layer 2 |z|</text>
+<text x="390.00" y="405" font-size="16" text-anchor="middle">Inter-layer coupling strength S</text>
+<text x="20" y="200.00" font-size="16" text-anchor="middle" transform="rotate(-90 20,200.00)">Steady-state |z|</text>
+<text x="390.00" y="25" font-size="18" text-anchor="middle">Stability vs S</text>
+</svg>
